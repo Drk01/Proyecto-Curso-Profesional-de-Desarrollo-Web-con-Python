@@ -1,5 +1,6 @@
 class Config:
-    pass
+    # Esta es una llave de ejemplo
+    SECRET_KEY = 'codigofacilito'
 
 
 class DevelopmentConfig(Config):
