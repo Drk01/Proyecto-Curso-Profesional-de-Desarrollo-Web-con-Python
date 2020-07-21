@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Contenido no encontrado: 404</title>
-  </head>
-  <body>
-    <h1>Error 404</h1>
-    <p>Lo sentimos, lo que estaba buscando no fue encontrado</p>
-  </body>
-</html>
+{% extends 'bootstrap/base.html' %} {% block title %} Error 404 {% endblock%} {%
+block navbar %} Aquí va el navbar {% endblock %} {% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>404 not found</h1>
+      <p>Lo sentimos, un error ha ocurrido. Página no encontrada</p>
+    </div>
+  </div>
+</div>
+{% endblock %}
