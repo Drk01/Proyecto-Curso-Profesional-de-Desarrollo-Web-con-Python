@@ -1,5 +1,6 @@
 from flask import Blueprint
 from flask import render_template
+from .forms import LoginForm
 
 page = Blueprint('page', __name__)
 
@@ -12,3 +13,9 @@ def page_not_found(error):
 @page.route('/')
 def index():
     return render_template('index.jinja')
+
+
+@page.route('/login')
+def login():
+    form = LoginForm()
+    return render_template('auth/login.jinja', title='Login', form=form)
