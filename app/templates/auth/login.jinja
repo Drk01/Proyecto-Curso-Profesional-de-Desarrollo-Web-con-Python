@@ -1,14 +1,19 @@
-{% extends 'layout.jinja' %} {% block content %}
+{% extends 'layout.jinja' %} {% block content %} {% from 'helpers/_forms.jinja'
+import render_field %}
 
 <div class="col-md-12 col-md-offset-1">
   <h3>Login</h3>
   <form action="" method="POST">
     <div class="form-group">
-      {{ form.username }}
+      {{ render_field(form.username, class='form-control', placeholder='Username') }}
     </div>
     <div class="form-group">
-      {{ form.password }}
+      {{ render_field(form.password, class='form-control', placeholder='Password') }}
     </div>
+
+    <button type="submit" class="btn btn-success btn-block btn-lg">
+      Enviar
+    </button>
   </form>
 </div>
 
