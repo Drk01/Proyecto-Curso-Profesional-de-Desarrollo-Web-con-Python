@@ -3,6 +3,7 @@ from .views import page
 from flask_bootstrap import Bootstrap
 from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
+from .models import User
 
 app = Flask(__name__)
 bootstrap = Bootstrap()
@@ -15,5 +16,9 @@ def createApp(config):
     csrf.init_app(app)
     bootstrap.init_app(app)
     app.register_blueprint(page)
-    db.init_app(app)
+
+    with app.app_context():
+        db.init_app(app)
+        db.create_all()
+
     return app
