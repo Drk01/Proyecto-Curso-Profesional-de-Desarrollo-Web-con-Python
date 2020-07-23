@@ -11,7 +11,8 @@ db = SQLAlchemy()
 
 from .models import User
 
-def createApp(config):
+
+def create_app(config):
     app.config.from_object(config)
     csrf.init_app(app)
     bootstrap.init_app(app)
@@ -20,5 +21,5 @@ def createApp(config):
     with app.app_context():
         db.init_app(app)
         db.create_all()
-
+        
     return app
