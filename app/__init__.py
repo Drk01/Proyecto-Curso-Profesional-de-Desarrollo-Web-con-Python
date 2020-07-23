@@ -3,13 +3,13 @@ from .views import page
 from flask_bootstrap import Bootstrap
 from flask_wtf.csrf import CSRFProtect
 from flask_sqlalchemy import SQLAlchemy
-from .models import User
 
 app = Flask(__name__)
 bootstrap = Bootstrap()
 csrf = CSRFProtect()
 db = SQLAlchemy()
 
+from .models import User
 
 def createApp(config):
     app.config.from_object(config)
