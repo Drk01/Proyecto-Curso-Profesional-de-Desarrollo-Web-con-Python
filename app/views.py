@@ -1,5 +1,5 @@
 from flask import Blueprint
-from flask import render_template, request
+from flask import render_template, request, flash
 from .forms import LoginForm, RegisterForm
 from .models import User
 
@@ -39,7 +39,7 @@ def register():
                 form.username.data, form.password.data, form.email.data
             )
 
-            print("Usuario creado de forma exitosa", user.id)
+            flash('Usuario registrado exitosamente.')
 
     return render_template("auth/register.html", title="Registro", form=form)
 
