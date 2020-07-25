@@ -4,6 +4,11 @@ import email_validator
 from werkzeug.security import generate_password_hash
 
 
+def cody_validator(form, field):
+    if field.data == "Cody" or field.data == "cody":
+        raise validators.ValidationError("El username no es permitido")
+
+
 class LoginForm(Form):
     username = StringField(
         "Username: ",
@@ -36,6 +41,7 @@ class RegisterForm(Form):
             validators.Required(message="El email es requerido"),
             validators.Email(message="Ingrese un email válido"),
         ],
+        email_validator,
     )
     password = PasswordField(
         "Password",
