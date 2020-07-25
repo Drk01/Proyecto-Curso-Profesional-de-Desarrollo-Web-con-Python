@@ -2,6 +2,7 @@ from wtforms import Form, StringField, PasswordField, validators, BooleanField
 from wtforms.fields.html5 import EmailField
 import email_validator
 from werkzeug.security import generate_password_hash
+from .models import User
 
 
 def cody_validator(form, field):
@@ -52,3 +53,11 @@ class RegisterForm(Form):
     )
     confirm_password = PasswordField("Confirmar contraseña")
     accept = BooleanField("", [validators.DataRequired()])
+
+    def validate_username(self, username):
+        if User.get_by_username(username.data):
+            raise validators.ValidationError("El username ya se encuentra en uso")
+
+    def validate_email(self, email):
+        if User.get_by_email(email.data):
+            raise validators.ValidationError("El email ya se encuentra en uso")
