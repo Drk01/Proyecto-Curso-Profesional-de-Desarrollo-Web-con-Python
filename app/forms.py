@@ -21,7 +21,8 @@ class LoginForm(Form):
         ],
     )
     encrypted_password = PasswordField(
-        "Password: ", [validators.Required(message="La contraseña es requerida")]
+        "Password: ", [validators.Required(
+            message="La contraseña es requerida")]
     )
 
     @property
@@ -48,7 +49,8 @@ class RegisterForm(Form):
         "Password",
         [
             validators.Required(message="El password es requerido"),
-            validators.EqualTo("confirm_password", message="La contraseña no coíncide"),
+            validators.EqualTo("confirm_password",
+                               message="La contraseña no coíncide"),
         ],
     )
     confirm_password = PasswordField("Confirmar contraseña")
@@ -56,8 +58,19 @@ class RegisterForm(Form):
 
     def validate_username(self, username):
         if User.get_by_username(username.data):
-            raise validators.ValidationError("El username ya se encuentra en uso")
+            raise validators.ValidationError(
+                "El username ya se encuentra en uso")
 
     def validate_email(self, email):
         if User.get_by_email(email.data):
             raise validators.ValidationError("El email ya se encuentra en uso")
+
+    def validate(self):
+        if not Form.validate(self):
+            return False
+
+        if len(self.password) < 3:
+            self.password.errors.append('El password es demasiado corto')
+            return False
+
+        return True
